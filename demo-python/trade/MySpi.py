@@ -58,6 +58,15 @@ class CTradeSpi(api.CThostFtdcTraderSpi):
 	def OnRtnTrade(self, pTrade: 'CThostFtdcTradeField' ) -> "void":
 		PrintReName("OnRtnTrade")
 		print ("investorid=", pTrade.InvestorID , "TradeID=", pTrade.TradeID, "OrderSysID", pTrade.OrderSysID)
+
+#报单操作单独对应的两组两组函数
+	def OnRspOrderAction(self, pInputOrderAction: 'CThostFtdcInputOrderActionField', pRspInfo: 'CThostFtdcRspInfoField', nRequestID: 'int', bIsLast: 'bool') -> "void":
+		PrintReName("pInputOrderAction")
+		print ("ErrorID=", pRspInfo.ErrorID, "ErrorMsg=", pRspInfo.ErrorMsg)	
+	
+	def OnErrRtnOrderAction(self, pOrderAction: 'CThostFtdcOrderActionField', pRspInfo: 'CThostFtdcRspInfoField') -> "void":
+		PrintReName("OnErrRtnOrderAction")
+		print ("ErrorMsg=", pRspInfo.ErrorMsg)	
 		
 
 #静态处理方法内容
